@@ -1,11 +1,11 @@
 name: Dotnet Pipeline
 on:
   workflow_dispatch:
-    inputs:
-      appname:
-        description: 'Appname'
-        required: true
-        type: string
+    # inputs:
+      # appname:
+      #   description: 'Appname'
+      #   required: true
+      #   type: string
       # db_connection:
       #   description: 'DB_connection'
       #   required: true
@@ -21,8 +21,8 @@ jobs:
 
     steps: 
       - name: Build Dotnet
+        uses: actions/checkout@v4
         run: |
           pwd
-          ls
           dotnet build -c Release --verbosity quiet
     
