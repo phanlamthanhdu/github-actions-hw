@@ -36,4 +36,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: Dotnet artifact
+          path: ./output
 
+      - name: Show
+        run: ls
+
+      # - name: Replace fields
+      #   uses: cschleiden/replace-tokens@v1
+      #   with:
+      #     files: 
