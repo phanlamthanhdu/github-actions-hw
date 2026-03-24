@@ -23,5 +23,6 @@ jobs:
       - name: Build Dotnet
         run: |
           pwd
+          ls
           dotnet build -c Release --verbosity quiet
     
