@@ -1,15 +1,17 @@
 name: Dotnet Pipeline
 on:
-  workflow_dispatch:
-  
+  workflow_dispatch: # Manually run workflow
+
 jobs:
   build_app:
     runs-on: ubuntu-latest
 
     steps: 
-      - name: Checkout Code
+      - name: Checkout Code 
         uses: actions/checkout@v4
 
       - name: Build Dotnet
-        run: dotnet build -c Release --verbosity quiet
+        run: dotnet build -c Release
     
+      - name: Publish Dotnet
+        run: dotnet publish -c Release -o ./publish_output
