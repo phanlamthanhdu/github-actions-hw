@@ -1,20 +1,7 @@
 name: Dotnet Pipeline
 on:
   workflow_dispatch:
-    # inputs:
-      # appname:
-      #   description: 'Appname'
-      #   required: true
-      #   type: string
-      # db_connection:
-      #   description: 'DB_connection'
-      #   required: true
-      #   type: string
-      # environment:
-      #   description: 'Environment'
-      #   type: environment
-      #   required: true
-
+  
 jobs:
   build_app:
     runs-on: ubuntu-latest
@@ -24,7 +11,5 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Dotnet
-        run: |
-          ls
-          dotnet build -c Release --verbosity quiet
+        run: dotnet build -c Release --verbosity quiet
     
