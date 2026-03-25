@@ -32,7 +32,9 @@ jobs:
           path: ./output
 
       - name: Show output
-        run: ls ./output
+        run: |
+          ls ./output
+          ls
 
       - name: Replace fields
         uses: cschleiden/replace-tokens@v1
