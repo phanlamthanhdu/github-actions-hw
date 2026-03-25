@@ -20,9 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
+      - name: Download artifact from another workflow
+        uses: dawidd6/action-download-artifact
         with:
+          workflow: build.yml
           name: Dotnet artifact
           path: ./output
 
@@ -34,8 +35,9 @@ jobs:
         with:
           files: '["./output/appsettings.json"]'
         env:
-          APP_NAME: This is the APP_NAME
-          ENV: This is the ENV!
-          DB_CONNECTION: This is the DB_CONNECTION
+          APP_NAME: ${{ inputs.appname }}
+          ENV: ${{ inputs.env }}
+          DB_CONNECTION: ${{ inputs.db_connection }}
+
       - name: Show file
         run: cat ./output/appsettings.json

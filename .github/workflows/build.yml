@@ -43,7 +43,9 @@ jobs:
           name: Dotnet artifact
           path: ./publish_output
 
-      - name: Show pwd
-        run: |
-          ls
-          pwd
+      - name: Pass inputs
+        uses: ./.github/workflows/deploy.yml
+        with:
+          appname: ${{ inputs.appname }}
+          env: ${{ inputs.env }}
+          db_connection: ${{ inputs.db_connection }}
