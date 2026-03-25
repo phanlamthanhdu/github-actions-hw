@@ -33,8 +33,7 @@ jobs:
 
       - name: Show output
         run: |
-          ls ./output
-          ls
+          ls ./output/dotnet-artifact
 
       - name: Replace fields
         uses: cschleiden/replace-tokens@v1
