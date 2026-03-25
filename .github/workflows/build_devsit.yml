@@ -40,13 +40,14 @@ jobs:
   pass_dev_inputs:
     needs: build_app
     strategy:
-      include:
-        - appname: dev1
-          env: dev_env1
-          db_connection: dev_db1
-        - appname: dev2
-          env: dev_env2
-          db_connection: dev_db2
+      matrix:
+        include:
+          - appname: dev1
+            env: dev_env1
+            db_connection: dev_db1
+          - appname: dev2
+            env: dev_env2
+            db_connection: dev_db2
 
     uses: ./.github/workflows/deploy_devsit.yml
     with:
@@ -58,13 +59,14 @@ jobs:
   pass_sit_inputs:
     needs: pass_dev_inputs
     strategy:
-      include:
-        - appname: sit1
-          env: sit_env1
-          db_connection: sit_db1
-        - appname: sit2
-          env: sit_env2
-          db_connection: sit_db2
+      matrix:
+        include:
+          - appname: sit1
+            env: sit_env1
+            db_connection: sit_db1
+          - appname: sit2
+            env: sit_env2
+            db_connection: sit_db2
 
     uses: ./.github/workflows/deploy_devsit.yml
     with:
