@@ -56,7 +56,7 @@ jobs:
       artifact_name: ${{ needs.build_app.outputs.artifact_name }}
 
   pass_sit_inputs:
-    needs: pass_dev_inputs
+    needs: [build_app,pass_dev_inputs]
     strategy:
       matrix:
         include:
