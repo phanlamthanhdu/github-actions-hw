@@ -27,9 +27,8 @@ jobs:
       - name: Download artifact from another workflow
         uses: actions/download-artifact@v4
         with:
-          # workflow: build.yml
           name: ${{ inputs.artifact_name }}
-          path: publish_output
+          path: output
 
       - name: Show output
         run: |
@@ -38,11 +37,11 @@ jobs:
       - name: Replace fields
         uses: cschleiden/replace-tokens@v1
         with:
-          files: '["./publish_output/appsettings.json"]'
+          files: '["./output/appsettings.json"]'
         env:
           APP_NAME: ${{ inputs.appname }}
           ENV: ${{ inputs.env }}
           DB_CONNECTION: ${{ inputs.db_connection }}
 
       - name: Show file
-        run: cat ./publish_output/appsettings.json
+        run: cat ./output/appsettings.json
