@@ -14,6 +14,11 @@ on:
         description: 'Enter the database connection'
         required: True
         type: string
+      artifact_name:
+        description: 'Enter the artifact name'
+        default: 'Dotnet artifact'
+        required: True
+        type: string
 
 jobs:
   build_app:
@@ -42,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Dotnet artifact
+          name: ${{ inputs.artifact_names }}
           path: ./publish_output
 
   pass_inputs:
@@ -52,3 +57,4 @@ jobs:
       appname: ${{ inputs.appname }}
       env: ${{ inputs.env }}
       db_connection: ${{ inputs.db_connection }}
+      artifact_name: ${{ inputs.artifact_names }}
