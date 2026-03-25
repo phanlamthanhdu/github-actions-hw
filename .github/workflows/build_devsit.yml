@@ -10,17 +10,18 @@ jobs:
       matrix:
         include:
           - appname: dev1
-            env: dev1_env
-            db_connection: dev1_db
+            env: dev_env1
+            db_connection: dev_db1
+            sit_appname: sit1
+            sit_env: sit_env1
+            sit_db_connection: sit_db1
+
           - appname: dev2
-            env: dev2_env
-            db_connection: dev2_db
-          # - appname: sit1
-          #   env: sit1_env
-          #   db_connection: sit1_db
-          # - appname: sit2
-          #   env: sit2_env
-          #   db_connection: sit2_db
+            env: dev_env2
+            db_connection: dev_db2
+            sit_appname: sit2
+            sit_env: sit_env2
+            sit_db_connection: sit_db2
 
     outputs:
       artifact_name: ${{ steps.define_artifact.outputs.artifact_name }}
@@ -39,11 +40,6 @@ jobs:
     
       - name: Publish Dotnet
         run: dotnet publish -c Release -o ./publish_output
-
-      - name: Test command
-        run: |
-          pwd
-          ls ./.github/workflows
 
       - name: Define artifact
         id: define_artifact
@@ -65,3 +61,8 @@ jobs:
       env: ${{ inputs.env }}
       db_connection: ${{ inputs.db_connection }}
       artifact_name: ${{ needs.build_app.outputs.artifact_name }}
+      sit_appname: ${{ inputs.appname }}
+      sit_env: ${{ inputs.env }}
+      sit_db_connection: ${{ inputs.db_connection }}
+
+
