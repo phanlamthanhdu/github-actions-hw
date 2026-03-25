@@ -35,7 +35,9 @@ jobs:
         run: dotnet publish -c Release -o ./publish_output
 
       - name: Test command
-        run: echo $GITHUB_WORKSPACE
+        run: |
+          pwd
+          ls
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
