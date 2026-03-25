@@ -18,20 +18,7 @@ on:
         description: 'Enter the artifact name'
         required: True
         type: string
-      sit_appname:
-        description: 'Enter the sit appname'
-        required: True
-        type: string
-      sit_env:
-        description: 'Enter the sit environment'
-        required: True
-        type: string
-      sit_db_connection:
-        description: 'Enter the sit database connection'
-        required: True
-        type: string
       
-
 jobs:
   deploy_dev:
     runs-on: ubuntu-latest
