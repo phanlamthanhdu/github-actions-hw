@@ -13,10 +13,7 @@ jobs:
   build_app:
     runs-on: ubuntu-latest
 
-    steps: 
-      - name: Test command
-        run: echo $GITHUB_ACTION_PATH 
-      
+    steps:  
       - name: Checkout Code 
         uses: actions/checkout@v4
 
@@ -30,6 +27,9 @@ jobs:
     
       - name: Publish Dotnet
         run: dotnet publish -c Release -o ./publish_output
+
+      - name: Test command
+        run: echo $GITHUB_ACTION_PATH
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
