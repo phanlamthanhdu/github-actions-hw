@@ -43,7 +43,7 @@ jobs:
 
       - name: Define artifact
         id: define_artifact
-        run: echo "artifact_name=Dotnet artifact" >> $GITHUB_OUTPUT
+        run: artifact_name=Dotnet artifact >> $GITHUB_OUTPUT # Pass value to $GITHUB_OUTPUT
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
