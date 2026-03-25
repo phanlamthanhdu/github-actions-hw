@@ -61,7 +61,7 @@ jobs:
 
   deploy_sit:
     needs: deploy_dev
-    runs_on: ubuntu-lastest
+    runs-on: ubuntu-lastest
 
     steps:
       - name: Download artifact from another workflow
