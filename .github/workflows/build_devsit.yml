@@ -53,7 +53,7 @@ jobs:
     with:
       appname: ${{ matrix.appname }}
       env: ${{ matrix.env }}
-      db_connection: ${{ maxtrix.db_connection }}
+      db_connection: ${{ matrix.db_connection }}
       artifact_name: ${{ needs.build_app.outputs.artifact_name }}
 
   pass_sit_inputs:
@@ -72,5 +72,5 @@ jobs:
     with:
       appname: ${{ matrix.appname }}
       env: ${{ matrix.env }}
-      db_connection: ${{ maxtrix.db_connection }}
+      db_connection: ${{ matrix.db_connection }}
       artifact_name: ${{ needs.build_app.outputs.artifact_name }}
