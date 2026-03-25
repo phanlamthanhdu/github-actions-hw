@@ -52,7 +52,6 @@ jobs:
         with:
           name: ${{ steps.define_artifact.outputs.artifact_name }}
           path: ./publish_output
-          overwrite: True
 
   pass_inputs:
     needs: build_app
