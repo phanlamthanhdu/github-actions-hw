@@ -11,11 +11,11 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    name: Calculation
-    id: calculation
-    run: |
-      ANS=$(( ${{inputs.number}} * ${{inputs.number}} ))
-      echo "result=$ANS" >> $GITHUB_OUTPUT
-    shell: bash
+    - name: Calculation
+      id: calculation
+      run: |
+        ANS=$(( ${{inputs.number}} * ${{inputs.number}} ))
+        echo "result=$ANS" >> $GITHUB_OUTPUT
+      shell: bash
 
 
