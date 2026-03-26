@@ -16,9 +16,9 @@ jobs:
       
       - name: Calculation the square
         id: square
-        uses: ./.github/actions/square-tool
+        uses: ./.github/actions/square-calculation
         with:
           number: ${{ inputs.number }}
 
-      - name: Hiển thị kết quả
-        run: echo "Kết quả nhận được là ${{ steps.square.outputs.squared-number }}"
+      - name: Show output
+        run: echo "The square of ${{ inputs.number }} is ${{ steps.square.outputs.squared-number }}"
