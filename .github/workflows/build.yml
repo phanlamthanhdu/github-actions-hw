@@ -1,23 +1,11 @@
 name: Build Dotnet
 on:
   workflow_dispatch:
-    inputs:
-      appname:
-        description: 'Enter the appname'
-        required: True
-        type: string
-      env:
-        description: 'Enter the environment'
-        required: True
-        type: string
-      db_connection:
-        description: 'Enter the database connection'
-        required: True
-        type: string
-
+  
 jobs:
   build-app:
     runs-on: ubuntu-latest
+    environment: BUILD_ENV
     outputs:
       artifact_name: ${{ steps.define_artifact.outputs.artifact_name }}
 
@@ -44,7 +32,7 @@ jobs:
       - name: Define artifact
         id: define_artifact
         run: |
-          ATF_NAME="Dotnet artifact"
+          ATF_NAME="${{ vars.ATF_NAME }}"
           echo "artifact_name=$ATF_NAME" >> $GITHUB_OUTPUT # Pass value to $GITHUB_OUTPUT
 
       - name: Upload artifact
@@ -57,7 +45,7 @@ jobs:
     needs: build-app
     uses: ./.github/workflows/deploy.yml
     with:
-      appname: ${{ inputs.appname }}
-      env: ${{ inputs.env }}
-      db_connection: ${{ inputs.db_connection }}
+      appname: ${{ vars.APPNAME }}
+      env: ${{ vars.ENV }}
+      db_connection: ${{ vars.DB }}
       artifact_name: ${{ needs.build-app.outputs.artifact_name }}
