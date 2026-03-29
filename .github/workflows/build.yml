@@ -16,7 +16,7 @@ on:
         type: string
 
 jobs:
-  build_app:
+  build-app:
     runs-on: ubuntu-latest
     outputs:
       artifact_name: ${{ steps.define_artifact.outputs.artifact_name }}
@@ -53,11 +53,16 @@ jobs:
           name: ${{ steps.define_artifact.outputs.artifact_name }}
           path: ./publish_output
 
-  pass_inputs:
-    needs: build_app
+  pass-inputs:
+    needs: build-app
     uses: ./.github/workflows/deploy.yml
     with:
       appname: ${{ inputs.appname }}
       env: ${{ inputs.env }}
       db_connection: ${{ inputs.db_connection }}
-      artifact_name: ${{ needs.build_app.outputs.artifact_name }}
+      artifact_name: ${{ needs.build-app.outputs.artifact_name }}
+
+  test-env:
+    environment: ENV_A
+    steps:
+      run: echo ${{ vars.VAR1 }}
