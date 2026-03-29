@@ -1,0 +1,12 @@
+name: Test environment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: env_b
+    
+    steps:
+      run: echo "${{ vars.VAR1 }}"

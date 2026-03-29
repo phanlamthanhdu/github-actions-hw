@@ -61,9 +61,3 @@ jobs:
       env: ${{ inputs.env }}
       db_connection: ${{ inputs.db_connection }}
       artifact_name: ${{ needs.build-app.outputs.artifact_name }}
-
-  test-env:
-    runs-on: ubuntu-latest
-    environment: ENV_A
-    steps:
-      run: echo "${{ secrets.SEC1 }}"
