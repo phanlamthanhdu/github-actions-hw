@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: ENV_A
+    environment: env_a
     
     steps:
       - run: echo "${{ vars.VAR1 }}"
