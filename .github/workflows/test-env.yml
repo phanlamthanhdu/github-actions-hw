@@ -4,15 +4,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  call_jobs: &template
     runs-on: ubuntu-latest
 
+    environment: template
+    
+    steps:
+      - run: echo "This is the environment"
+
+  deploy-env:
+    <<: *template
     strategy:
       matrix:
         envs: [E1, E2, E3]
       max-parallel: 1
-
     environment: ${{ matrix.envs }}
-    
-    steps:
-      - run: echo "This is the environment ${{ matrix.envs }}"
+  
