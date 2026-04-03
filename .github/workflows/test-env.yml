@@ -6,8 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
-    steps:
-      - run: |
-          echo ${{ secrets.TS1 }}
-          echo ${{ vars.TV1 }}
+    uses: ./.github/workflows/call_env.yml
+    environment: BUILD_ENV
+    with:
+      var1: vars.APPNAME

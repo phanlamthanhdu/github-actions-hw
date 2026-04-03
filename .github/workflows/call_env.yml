@@ -1,0 +1,13 @@
+name: Call environment
+
+on:
+  workflow_call:
+    inputs:
+      var1:
+        type: string
+        required: true
+
+jobs:
+  show_env:
+    steps:
+      - run: echo ${{ inputs.var1 }}
