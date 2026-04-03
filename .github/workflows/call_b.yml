@@ -1,0 +1,14 @@
+name: Call environment
+
+on:
+  workflow_call:
+    inputs:
+      appname:
+        type: string
+        required: true
+
+jobs:
+  show_env:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo B

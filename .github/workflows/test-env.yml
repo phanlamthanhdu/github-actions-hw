@@ -3,23 +3,11 @@ name: Test environment
 on:
   workflow_dispatch:
 
-# 1. Define the template outside of the 'jobs' hierarchy
-x-template: &job_definition
-  runs-on: ubuntu-latest
-  steps:
-    - run: echo "Value is ${{ vars.V1 }}"
-
 jobs:
   dev:
-    <<: *job_definition
-    environment: E1
-
-  sit:
-    <<: *job_definition
-    needs: dev
-    environment: E2
-
-  prod:
-    <<: *job_definition
-    needs: sit # Changed to 'sit' to create a logical chain
-    environment: E3
+    strategy:
+      matrix:
+        call_actions: [a,b]
+    uses: ./.github/workflows/call_${{ matrix.call_actions }}.yml
+    with: 
+      appname: ${{ matrix.call_actions }}
