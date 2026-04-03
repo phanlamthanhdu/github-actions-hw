@@ -5,9 +5,19 @@ on:
 
 jobs:
   dev:
-    strategy:
-      matrix:
-        call_actions: [plan,apply]
-    uses: ./.github/workflows/call_${{ matrix.call_actions }}.yml
+    uses: ./.github/workflows/call_apply.yml
     with: 
       appname: ${{ matrix.call_actions }}
+    secrets: &secrets_template
+      env_vars: |
+        SEC1=A
+        SEC2=B
+
+  sit:
+    uses: ./.github/workflows/call_apply.yml
+    with: 
+      appname: ${{ matrix.call_actions }}
+    secrets: 
+      <<: *secrets_template
+      env_vars: |
+        SEC1=C

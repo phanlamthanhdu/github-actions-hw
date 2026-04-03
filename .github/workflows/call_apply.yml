@@ -6,6 +6,9 @@ on:
       appname:
         type: string
         required: true
+    secrets:
+      env_vars:
+        required: true
 
 jobs:
   show_env:
