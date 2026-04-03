@@ -7,7 +7,7 @@ jobs:
   dev:
     strategy:
       matrix:
-        call_actions: [a,b]
+        call_actions: [plan,apply]
     uses: ./.github/workflows/call_${{ matrix.call_actions }}.yml
     with: 
       appname: ${{ matrix.call_actions }}
