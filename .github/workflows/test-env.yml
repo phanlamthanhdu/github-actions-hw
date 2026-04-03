@@ -5,6 +5,7 @@ on:
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     uses: ./.github/workflows/call_env.yml
     with:
       appname: An APPNAME
