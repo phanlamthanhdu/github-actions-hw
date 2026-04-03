@@ -9,5 +9,6 @@ on:
 
 jobs:
   show_env:
+    runs-on: ubuntu-latest
     steps:
       - run: echo ${{ inputs.var1 }}
