@@ -7,7 +7,7 @@ jobs:
   dev:
     uses: ./.github/workflows/call_apply.yml
     with: 
-      appname: ${{ matrix.call_actions }}
+      appname: A
     secrets: &secrets_template
       env_vars: |
         SEC1=A
