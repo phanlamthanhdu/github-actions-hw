@@ -6,12 +6,13 @@ on:
       workspace:
         type: string
         required: true
-    secrets:
-      env_vars:
+      tf_var:
+        type: string
         required: true
 
 jobs:
   show_env:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.workspace }}
     steps:
-      - run: echo "${{inputs.workspace}} and ${{secrets.env_vars}}"
+      - run: echo ${{ vars.[inputs.tf_var] }}
