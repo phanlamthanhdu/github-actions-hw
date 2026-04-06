@@ -18,8 +18,8 @@ jobs:
 
           matrix = []
 
-          envs = [dev, sit, prod]
-          tf_vars = [TF_NONPROD_DEV, TF_NONPROD_SIT, TF_PROD_PROD]
+          envs = ["dev", "sit", "prod"]
+          tf_vars = ["TF_NONPROD_DEV", "TF_NONPROD_SIT", "TF_PROD_PROD"]
 
           for e,v in zip(envs,tf_vars):
             matrix.append({
