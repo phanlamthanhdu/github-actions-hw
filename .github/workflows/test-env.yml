@@ -4,30 +4,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  get_vars:
+  prepare:
     runs-on: ubuntu-latest
     outputs: 
-      workspace: ${{steps.get_var.outputs.env_name}}
-      tf_config: ${{steps.get_var.outputs.tf_var}}
-    strategy:
-      matrix:
-        envs: [E1,E2,E3]
-    environment: ${{matrix.envs}}
+      matrix: ${{steps.get_matrix.outputs.matrix}}
       
     steps:
-      - id: get_var
+      - id: get_matrix
         run: |
-          echo "env_name=${{matrix.envs}}" >> $GITHUB_OUTPUT
-          echo "tf_var=${{vars.V1}}" >> $GITHUB_OUTPUT
+          matrix = []
+
+          envs = [dev, sit, prod]
+          tf_vars = [TF_NONPROD_DEV, TF_NONPROD_SIT, TF_PROD_PROD]
+
+          for e,v in zip(envs,tf_vars):
+            matrix.append({
+              workspace: e
+              tf_config: v
+            })
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f"matrix={json.dumps(config)}\n")
 
   build-infra:
-    needs: get_vars
+    needs: prepare
     strategy:
       matrix:
-        include:
-          - workspace: ${{needs.get_vars.outputs.workspace}}
-            tf_config: ${{needs.get_vars.outputs.tf_config}}
-
+        include: ${{needs.prepare.outputs.matrix}}
     uses: ./.github/workflows/call_apply.yml
     with: 
       workspace: ${{matrix.workspace}}
