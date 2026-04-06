@@ -7,8 +7,8 @@ jobs:
   get_vars:
     runs-on: ubuntu-latest
     outputs: 
-      env_name: ${{steps.get_var.outputs.env_name}}
-      tf_var: ${{steps.get_var.outputs.tf_var}}
+      workspace: ${{steps.get_var.outputs.env_name}}
+      tf_config: ${{steps.get_var.outputs.tf_var}}
     strategy:
       matrix:
         envs: [E1,E2,E3]
@@ -25,12 +25,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - workspace: needs.get_vars.outputs.env_name
-            tf_config: needs.get_vars.outputs.tf_var
+          - workspace: ${{needs.get_vars.outputs.workspace}}
+            tf_config: ${{needs.get_vars.outputs.tf_config}}
 
     uses: ./.github/workflows/call_apply.yml
     with: 
-      workspace: ${{ matrix.workspace }}
+      workspace: ${{matrix.workspace}}
     secrets:
       env_vars: |
         TF_CONFIG=${{matrix.tf_config}}
