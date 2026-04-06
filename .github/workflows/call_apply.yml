@@ -6,9 +6,6 @@ on:
       workspace:
         type: string
         required: true
-      tf_var:
-        type: string
-        required: true
 
 jobs:
   show_env:
@@ -16,5 +13,4 @@ jobs:
     environment: ${{ inputs.workspace }}
     steps:
       - run: |
-          echo ${{ vars[inputs.tf_var] }}
           echo ${{ inputs.workspace == 'dev' && 'This is true' || 'This is false' }}
