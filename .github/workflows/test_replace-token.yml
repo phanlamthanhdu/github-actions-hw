@@ -1,0 +1,22 @@
+name: Test replace token
+on: 
+    workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Replace token
+        uses: stephen-BT/replace-tokens@v2
+        with:
+          files: '["./appsettings.json"]'
+        env:
+          APP_NAME: "Replaced"
+          ENV: "Replaced"
+          DB_CONNECTION: "Replaced"
+      
+      - name: Show outputs
+        run: cat ./appsettings.json
