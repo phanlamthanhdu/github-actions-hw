@@ -6,7 +6,7 @@ inputs:
     required: True
   testing_var:
     description: 'Nothing'
-    default: ""
+    default: ''
 outputs:
   squared-number:
     description: 'A squared number'
@@ -15,7 +15,7 @@ runs:
   using: 'composite'
   steps:
     - name: Calculation
-      if: ${{ inputs.testing_var != "" }}
+      if: ${{ inputs.testing_var != '' }}
       id: calculation
       run: |
         ANS=$(( ${{inputs.number}} * ${{inputs.number}} ))
