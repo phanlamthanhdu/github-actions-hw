@@ -4,12 +4,16 @@ inputs:
   number:
     description: 'A number being squared'
     required: True
+  testing_var:
+    description: 'Nothing'
+    default: ""
 outputs:
   squared-number:
     description: 'A squared number'
     value: ${{ steps.calculation.outputs.result }}
 runs:
   using: 'composite'
+  if: inputs.testing_var != ""
   steps:
     - name: Calculation
       id: calculation
