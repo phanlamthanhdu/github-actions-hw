@@ -13,7 +13,7 @@ outputs:
     value: ${{ steps.calculation.outputs.result }}
 runs:
   using: 'composite'
-  if: inputs.testing_var != ""
+  if: ${{inputs.testing_var != ""}}
   steps:
     - name: Calculation
       id: calculation
