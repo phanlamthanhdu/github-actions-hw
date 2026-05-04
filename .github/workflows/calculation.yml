@@ -19,6 +19,7 @@ jobs:
         uses: ./.github/actions/square-calculation
         with:
           number: ${{ inputs.number }}
+          testing_var: "HW"
 
       - name: Show output
         run: echo "The square of ${{ inputs.number }} is ${{ steps.square.outputs.squared-number }}"
