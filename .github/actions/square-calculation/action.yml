@@ -15,14 +15,10 @@ runs:
   using: 'composite'
   steps:
     - name: Calculation
+      if: ${{ inputs.testing_var != "" }}
       id: calculation
       run: |
-        if [ -n "${{ inputs.testing_var }}" ]; then
-          ANS=$(( ${{inputs.number}} * ${{inputs.number}} ))
-          echo "result=$ANS" >> $GITHUB_OUTPUT
-        else
-          ANS="Nothing"
-          echo "result=$ANS" >> $GITHUB_OUTPUT
-        fi
+        ANS=$(( ${{inputs.number}} * ${{inputs.number}} ))
+        echo "result=$ANS" >> $GITHUB_OUTPUT
       shell: bash
 
