@@ -36,10 +36,10 @@ jobs:
       - name: Export environment variables (Python)
         if: ${{ inputs.executor == 'python' }}
         env:
-          APP_NAME=my-app
-          APP_ENV=preprod
-          API_KEY=secret123
-          DB_PASSWORD=abc456
+          APP_NAME: 'my-app'
+          APP_ENV: 'preprod'
+          API_KEY: 'secret123'
+          DB_PASSWORD: 'abc456'
         run: |
           python .github/scripts/export-env-vars.py
 
