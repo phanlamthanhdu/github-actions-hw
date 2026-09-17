@@ -38,6 +38,6 @@ jobs:
             APP_ENV=preprod
             API_KEY=secret123
             DB_PASSWORD=abc456
-        run: scripts\export-env-vars.py
+        run: scripts/export-env-vars.py
 
       
