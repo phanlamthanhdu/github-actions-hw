@@ -1,8 +1,12 @@
 import os
 
-env_vars = os.getenv("env_vars").strip().split("\n")
+env_vars = os.getenv("env_vars", "").strip().splitlines()
 
 print(env_vars)
 
 for var in env_vars:
-    print(f"::add-mask::{var.split("=")[1]}")
+    key, value = var.split("=", 1)
+
+    os.environ[key] = value
+
+    print(f"::add-mask::{value}")
