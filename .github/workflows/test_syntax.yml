@@ -1,0 +1,44 @@
+name: Test syntax
+on: 
+    workflow_dispatch:
+      inputs:
+        executor:
+          description: 'Enter a number to calculate square'
+          required: True
+          type: choice
+          options:
+            - bash
+            - python
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Export environment variables (Bash)
+        if: ${{ inputs.executor == 'bash' }}
+        shell: bash
+        env:
+          env_vars: |
+            APP_NAME=my-app
+            APP_ENV=preprod
+            API_KEY=secret123
+            DB_PASSWORD=abc456
+        run: |
+          while read -r i; do
+            echo "::add-mask::${i#*=}"
+            printf '%s\n' "$i" >> "$GITHUB_ENV"
+          done <<< "$env_vars"
+
+
+      - name: Export environment variables (Python)
+        if: ${{ inputs.executor == 'python' }}
+        shell: python
+        env:
+          env_vars: |
+            APP_NAME=my-app
+            APP_ENV=preprod
+            API_KEY=secret123
+            DB_PASSWORD=abc456
+        run: scripts\export-env-vars.py
+
+      
