@@ -41,11 +41,8 @@ jobs:
             APP_ENV=preprod
             API_KEY=secret123
             DB_PASSWORD=abc456
-        run: python .github/scripts/export-env-vars.py
-
-      - name: Check masked variables
-        shell: bash
         run: |
+          python .github/scripts/export-env-vars.py
           echo "APP_NAME=$APP_NAME"
           echo "APP_ENV=$APP_ENV"
           echo "API_KEY=$API_KEY"
