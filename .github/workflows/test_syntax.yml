@@ -43,4 +43,12 @@ jobs:
             DB_PASSWORD=abc456
         run: python .github/scripts/export-env-vars.py
 
+      - name: Check masked variables
+        shell: bash
+        run: |
+          echo "APP_NAME=$APP_NAME"
+          echo "APP_ENV=$APP_ENV"
+          echo "API_KEY=$API_KEY"
+          echo "DB_PASSWORD=$DB_PASSWORD"
+
       
