@@ -32,7 +32,6 @@ jobs:
 
       - name: Export environment variables (Python)
         if: ${{ inputs.executor == 'python' }}
-        shell: python
         env:
           env_vars: |
             APP_NAME=my-app
